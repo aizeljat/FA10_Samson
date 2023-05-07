@@ -1,0 +1,65 @@
+---
+title: "FA10_Samson"
+output: html_document
+date: "2023-05-04"
+---
+
+```{
+
+#1. A random variable X is said to have the gamma distribution, or to be gamma distributed, if the density function is
+
+
+#2. Prove that the mean and variance of a binomially distributed random variable are, respectively
+
+Var(X) = E(X^2) - (E(X))^2
+
+
+E(X^2) = ∑x x^2 P(X = x)
+
+E(X^2) = ∑x x^2 (n as x) p^x (1-p)^(n-x)
+
+E(X^2) = ∑x x(x-1) (n as x) p^x (1-p)^(n-x) + ∑x x (n as x) p^x (1-p)^(n-x)
+
+∑x x(x-1) (n as x) p^x (1-p)^(n-x) = n(n-1)p^2 ∑x (n-2 as x-2) p^(x-2) (1-p)^(n-x)
+
+∑x (n-2 as x-2) p^(x-2) (1-p)^(n-x) = (p + q)^(n-2) = 1
+
+∑x x(x-1) (n as x) p^x (1-p)^(n-x) = n(n-1)p^2
+
+∑x x (n as x) p^x (1-p)^(n-x) = zy
+
+E(X^2) = zy + n(n-1)p^2
+
+Var(X) = E(X^2) - (E(X))^2
+
+Var(X) = zy + n(n-1)p^2 - (zy)^2
+
+Var(X) = zy(1-p)
+
+Var(X) = nzy
+
+End of proof
+
+
+#3. Establish the validity of the Poisson approximation to the binomial distribution.  
+
+n <- 50   #trials
+p <- 0.1  #probability success
+
+x <- 0:n  #random variable
+x
+
+binom_bd <- dbinom(x, n, p)  
+binom_bd
+
+pd <- n * p  
+pd
+
+pois_pd <- dpois(x, pd)  
+
+plot(x, binom_bd, type="h", col="blue", lwd=3, ylim=c(0, max(binom_bd, pois_pd)),
+     xlab="Number of successes", ylab="Probability", main="Binomial vs Poisson Distribution")
+lines(x, pois_pd, type="h", col="red", lwd=3)
+legend("topright", c("Binomial", "Poisson"), col=c("blue", "red"), lwd=3)}
+
+```
